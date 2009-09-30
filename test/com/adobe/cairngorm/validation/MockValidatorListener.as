@@ -28,40 +28,40 @@
  */
 package com.adobe.cairngorm.validation
 {
-   import mx.events.ValidationResultEvent;
-   import mx.validators.IValidatorListener;
+    import mx.events.ValidationResultEvent;
+    import mx.validators.IValidatorListener;
 
-   public class MockValidatorListener implements IValidatorListener
-   {
-      public var validationResultType : String;
-      
-      public function MockValidatorListener()
-      {
-      }
+    public class MockValidatorListener implements IValidatorListener
+    {
+        public var validationResultType:String;
 
-      public function get errorString():String
-      {
-         return "";
-      }
-      
-      public function set errorString(value:String):void
-      {
-      }
-      
-      public function get validationSubField():String
-      {
-         return "";
-      }
-      
-      public function set validationSubField(value:String):void
-      {
-      }
-      
-      public function validationResultHandler(event:ValidationResultEvent):void
-      {
-         validationResultType = event.type; 
-        
-      }
-      
-   }
+        public function MockValidatorListener()
+        {
+        }
+
+        public function get errorString():String
+        {
+            return "";
+        }
+
+        public function set errorString(value:String):void
+        {
+        }
+
+        public function get validationSubField():String
+        {
+            return "";
+        }
+
+        public function set validationSubField(value:String):void
+        {
+        }
+
+        public function validationResultHandler(event:ValidationResultEvent):void
+        {
+            validationResultType = event.type;
+
+        }
+
+    }
 }

@@ -28,13 +28,13 @@
  */
 package com.adobe.cairngorm.validation
 {
-	import flexunit.framework.TestSuite;
+    import flexunit.framework.TestSuite;
 
-	public class AllTests extends TestSuite
-	{
-		public function AllTests()
-		{
-		   addTest( new TestSuite ( TestValidatorGroup ) );		   
-		}
-	}
+    public class AllTests extends TestSuite
+    {
+        public function AllTests()
+        {
+            addTest(new TestSuite(TestValidatorGroup));
+        }
+    }
 }

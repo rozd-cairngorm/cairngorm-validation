@@ -28,25 +28,26 @@
  */
 package com.adobe.cairngorm.validation
 {
-   import flash.events.EventDispatcher;
-   
-   import mx.validators.Validator;
+    import flash.events.EventDispatcher;
 
-   public class ValidatorSubscriber extends EventDispatcher
-   {
-      [Bindable]
-      public var validator : Validator;
-      
-      [Bindable]
-      public var listener : EventDispatcher;
-      
-      /**
-       * The ValidatorSubscriber constructor.
-       */
-      public function ValidatorSubscriber()
-      {
-         super();
-      }
-      
-   }
+    import mx.validators.Validator;
+
+    public class ValidatorSubscriber extends EventDispatcher
+    {
+
+        [Bindable]
+        public var validator:Validator;
+
+        [Bindable]
+        public var listener:EventDispatcher;
+
+        /**
+         * The ValidatorSubscriber constructor.
+         */
+        public function ValidatorSubscriber()
+        {
+            super();
+        }
+
+    }
 }
