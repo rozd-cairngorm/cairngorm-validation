@@ -9,7 +9,7 @@
 		<version>3.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>validationlib</artifactId>
+	<artifactId>validation</artifactId>
 	<packaging>swc</packaging>
 	<name>${project.groupId} ${project.artifactId}</name>
 	<description>${project.groupId} ${project.artifactId}</description>
