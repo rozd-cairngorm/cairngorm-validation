@@ -8,8 +8,14 @@
 		<artifactId>lib-parent</artifactId>
         <version>3.0</version>
     </parent>
-    <version>1.0</version>
-
+    <distributionManagement>
+        <repository>
+            <id>txi_snapshot</id>
+            <url>http://txici.can.adobe.com:9999/nexus/content/repositories/txi_snapshots/</url>
+        </repository>
+    </distributionManagement>    
+    <version>1.2-SNAPSHOT</version>
+    
 	<artifactId>validation</artifactId>
 	<packaging>swc</packaging>
     <name>${project.groupId} ${project.artifactId} ${project.version}</name>
