@@ -22,13 +22,15 @@
  */
 package com.adobe.cairngorm.validation
 {
-    import flexunit.framework.TestCase;
-
+    import com.adobe.cairngorm.validation.event.ValidatorGroupEvent;
+    
+    import flexunit.framework.EventfulTestCase;
+    
     import mx.controls.TextInput;
     import mx.events.ValidationResultEvent;
     import mx.validators.StringValidator;
 
-    public class TestValidatorGroup extends TestCase
+    public class TestValidatorGroup extends EventfulTestCase
     {
         private var validatorGroup:ValidatorGroup;
 
@@ -61,7 +63,7 @@ package com.adobe.cairngorm.validation
 
             mockFirstnameValidatorListener = new MockValidatorListener();
             mockLastnameValidatorListener = new MockValidatorListener();
-
+			
             firstnameValidator = new StringValidator();
             firstnameValidator.required = true;
             firstnameValidator.source = firstnameInput;
@@ -115,7 +117,33 @@ package com.adobe.cairngorm.validation
 
             assertTrue("The validatorGroup should be valid", validatorGroup.isValid);
         }
-
+		
+		public function testIfValidationEventIsDispatched():void
+		{
+			expectEvents(validatorGroup, 
+				ValidatorGroupEvent.VALIDITY_CHANGE, 
+				ValidatorGroupEvent.VALIDITY_CHANGE,
+				ValidatorGroupEvent.VALIDITY_CHANGE, 
+				ValidatorGroupEvent.VALIDITY_CHANGE	
+			);
+			
+			validatorGroup.preValidation = true;
+			validatorGroup.addValidator(firstnameValidator);			
+			validatorGroup.addValidator(lastnameValidator);
+			
+			assertFalse("The validatorGroup should be invalid", validatorGroup.isValid);
+			
+			var event:ValidatorGroupEvent = ValidatorGroupEvent(lastActualEvent);
+			assertNotNull("expected event", event);
+			assertNotNull("expected invalid validators", event.invalidValidators);
+			assertEquals("expected 2 invalid validators", 2, event.invalidValidators.length);			
+			
+			firstnameInput.text = "Yaniv";
+			lastnameInput.text = "De Ridder";
+			
+			assertTrue("The validatorGroup should be valid", validatorGroup.isValid);
+		}
+		
         public function testPreValidationDisabled():void
         {
             validatorGroup.preValidation = false;
@@ -166,7 +194,7 @@ package com.adobe.cairngorm.validation
             validatorGroup.preValidation = true;
             validatorGroup.addValidator(firstnameValidator);
             firstnameInput.text = "Yaniv";
-
+			
             assertTrue("The validatorGroup should be valid", validatorGroup.isValid);
 
             validatorGroup.addValidator(lastnameValidator);
@@ -184,7 +212,7 @@ package com.adobe.cairngorm.validation
             validatorGroup.addValidator(firstnameValidator);
             validatorGroup.addValidator(lastnameValidator);
             firstnameInput.text = "Yaniv";
-
+			
             assertFalse("The validatorGroup should be invalid", validatorGroup.isValid);
 
             validatorGroup.removeValidator(lastnameValidator);

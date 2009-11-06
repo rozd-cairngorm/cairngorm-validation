@@ -24,19 +24,30 @@ package com.adobe.cairngorm.validation.event
 {
     import flash.events.Event;
 
+    import mx.collections.IList;
+
     public class ValidatorGroupEvent extends Event
     {
         public static const VALIDITY_CHANGE:String = "validityChange";
 
         public static const ENABLED_CHANGE:String = "enabledChange";
 
+        private var _invalidValidators:IList;
+
+        public function get invalidValidators():IList
+        {
+            return _invalidValidators;
+        }
+
         public function ValidatorGroupEvent(
             type:String,
             bubbles:Boolean = true,
-            cancelable:Boolean = false)
+            cancelable:Boolean = false,
+            invalidValidators:IList = null)
         {
-            //TODO: implement function
             super(type, bubbles, cancelable);
+
+            _invalidValidators = invalidValidators;
         }
 
     }

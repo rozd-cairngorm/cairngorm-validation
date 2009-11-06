@@ -385,7 +385,7 @@ package com.adobe.cairngorm.validation
             }
 
             dispatchEvent(new ValidatorGroupEvent(
-                          ValidatorGroupEvent.VALIDITY_CHANGE));
+                          ValidatorGroupEvent.VALIDITY_CHANGE, true, false, invalid));
         }
 
         private function removeInvalid(obj:Object):void
@@ -398,7 +398,7 @@ package com.adobe.cairngorm.validation
             }
 
             dispatchEvent(new ValidatorGroupEvent(
-                          ValidatorGroupEvent.VALIDITY_CHANGE));
+                          ValidatorGroupEvent.VALIDITY_CHANGE, true, false, invalid));
         }
 
         private function validateValidators(silentValidation:Boolean):void
@@ -506,7 +506,7 @@ package com.adobe.cairngorm.validation
         private function handleValidationChange(event:CollectionEvent):void
         {
             dispatchEvent(new ValidatorGroupEvent(
-                          ValidatorGroupEvent.VALIDITY_CHANGE));
+                          ValidatorGroupEvent.VALIDITY_CHANGE, true, false, invalid));
         }
     }
 }
