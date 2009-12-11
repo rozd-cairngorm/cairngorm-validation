@@ -3,13 +3,14 @@
   <includeClasses>
     <classEntry path="com.adobe.cairngorm.validation.ValidatorGroup"/>
     <classEntry path="com.adobe.cairngorm.validation.ValidatorGroupSubscriber"/>
+    <classEntry path="com.adobe.cairngorm.validation.ValidatorMultipleListeners"/>
     <classEntry path="com.adobe.cairngorm.validation.ValidatorSubscriber"/>
     <classEntry path="com.adobe.cairngorm.validation.event.ValidatorGroupEvent"/>
+    <classEntry path="com.adobe.cairngorm.validation.validators.AbstractMessageValidator"/>
+    <classEntry path="com.adobe.cairngorm.validation.validators.FieldComparisonValidator"/>
     <classEntry path="com.adobe.cairngorm.validation.AllTests"/>
     <classEntry path="com.adobe.cairngorm.validation.MockValidatorListener"/>
     <classEntry path="com.adobe.cairngorm.validation.TestValidatorGroup"/>
-    <classEntry path="flexunit.framework.EventListener"/>
-    <classEntry path="flexunit.framework.EventfulTestCase"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

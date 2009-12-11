@@ -22,6 +22,10 @@
  */
 package com.adobe.cairngorm.validation
 {
+    import com.adobe.cairngorm.validation.validators.TestAbstractMessageValidator;
+    import com.adobe.cairngorm.validation.validators.TestFieldComparisonValidator;
+    import com.adobe.cairngorm.validation.validators.TestLogicalORValidator;
+    
     import flexunit.framework.TestSuite;
 
     public class AllTests extends TestSuite
@@ -29,6 +33,9 @@ package com.adobe.cairngorm.validation
         public function AllTests()
         {
             addTest(new TestSuite(TestValidatorGroup));
+			addTest( new TestSuite( TestAbstractMessageValidator ) );
+			addTest( new TestSuite( TestFieldComparisonValidator ) );
+			addTest( new TestSuite( TestLogicalORValidator ) );
         }
     }
 }

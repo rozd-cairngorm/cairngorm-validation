@@ -23,7 +23,8 @@
 package com.adobe.cairngorm.validation
 {
     import flash.events.EventDispatcher;
-
+    import flash.events.FocusEvent;
+    
     import mx.binding.utils.BindingUtils;
     import mx.core.IMXMLObject;
     import mx.core.UIComponent;
@@ -60,6 +61,13 @@ package com.adobe.cairngorm.validation
 
         [Bindable]
         public var enableControlTrigger:Boolean = false;
+		
+		/**
+		 * By setting this property to true, the Validator Listener is going to be reset to VALID 
+		 * on FOCUS_IN event.  
+		 */
+		[Bindable]
+		public var resetValidationFeedbackOnFocusIn : Boolean = false;
 
         public var autoInit:Boolean = true;
 
@@ -84,7 +92,7 @@ package com.adobe.cairngorm.validation
          * @param validator The validator to register with the listener
          * @param listener The listener. It can be anything that implements IValidatorListener
          * @param forceValidation This flag will force the validation if set to True for the specified validator after it is being registered with the listener
-         * @param enableTrigger This flag will set the trigger property of the of the specified Validator if set to True
+         * @param enableTrigger This flag will set the trigger property of the specified Validator if set to True
          */
         public static function registerForValidationEvents(
             validator:Validator,
@@ -117,6 +125,12 @@ package com.adobe.cairngorm.validation
 
             validator.listener = listener;
         }
+		
+		private function handleFocusIn( event : FocusEvent ) : void
+		{
+			var validationResultEvent:ValidationResultEvent = new ValidationResultEvent(ValidationResultEvent.VALID);
+			IValidatorListener( event.currentTarget ).validationResultHandler( validationResultEvent );
+		}
 
         public function set triggerInit(value:Object):void
         {
@@ -175,12 +189,30 @@ package com.adobe.cairngorm.validation
 
         private var count:int = 0;
 
+		private function containNullValues( value : Array ) : Boolean
+		{
+			for each( var item : Object in value )
+			{
+				if( item == null )
+				{
+					return true;
+				}
+			}
+			
+			return false;
+		}
+		
         private function subscribedInitialized(listener:Object):void
         {
-            if (listener != null)
+            if( listener != null && listener is Array && containNullValues( listener as Array ) == false )
             {
-                count++;
+				count++;
             }
+			
+			if( listener != null && listener is IValidatorListener )
+			{
+				count++;
+			}
 
             if (count == subscribers.length)
             {
@@ -190,16 +222,31 @@ package com.adobe.cairngorm.validation
 
         private function subscribeControl(subscriber:ValidatorSubscriber):void
         {
+			var subscriberListener : EventDispatcher;
+			
+			if( subscriber.listener && subscriber.listener is Array )
+			{
+				subscriberListener = new ValidatorMultipleListeners( subscriber.listener as Array );		
+			}
+			else if( ! subscriber.listener is Array )
+			{
+				subscriberListener = EventDispatcher( subscriber.listener );
+			}
+			
             registerForValidationEvents(
                 subscriber.validator,
-                subscriber.listener, false, enableControlTrigger);
+				subscriberListener, false, enableControlTrigger);
+			
+			if( resetValidationFeedbackOnFocusIn )
+			{
+				UIComponent( subscriber.listener ).addEventListener(FocusEvent.FOCUS_IN, handleFocusIn ); 
+			}
         }
 
         private function handleDocumentCreated(event:FlexEvent):void
         {
             if (autoInit)
             {
-                //initializeSubscribers();
                 registerSubscribers();
             }
         }
