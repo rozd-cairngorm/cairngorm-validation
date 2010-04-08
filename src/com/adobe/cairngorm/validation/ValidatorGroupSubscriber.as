@@ -228,7 +228,7 @@ package com.adobe.cairngorm.validation
 			{
 				subscriberListener = new ValidatorMultipleListeners( subscriber.listener as Array );		
 			}
-			else if( !(subscriber.listener is Array) )
+            else if( !(subscriber.listener is Array) )
 			{
 				subscriberListener = EventDispatcher( subscriber.listener );
 			}

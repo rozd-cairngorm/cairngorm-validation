@@ -7,7 +7,10 @@
     <classEntry path="com.adobe.cairngorm.validation.ValidatorSubscriber"/>
     <classEntry path="com.adobe.cairngorm.validation.event.ValidatorGroupEvent"/>
     <classEntry path="com.adobe.cairngorm.validation.validators.AbstractMessageValidator"/>
+    <classEntry path="com.adobe.cairngorm.validation.validators.BooleanValidator"/>
     <classEntry path="com.adobe.cairngorm.validation.validators.FieldComparisonValidator"/>
+    <classEntry path="com.adobe.cairngorm.validation.validators.LogicalORValidator"/>
+    <classEntry path="com.adobe.cairngorm.validation.validators.URLValidator"/>
     <classEntry path="com.adobe.cairngorm.validation.AllTests"/>
     <classEntry path="com.adobe.cairngorm.validation.MockValidatorListener"/>
     <classEntry path="com.adobe.cairngorm.validation.TestValidatorGroup"/>
