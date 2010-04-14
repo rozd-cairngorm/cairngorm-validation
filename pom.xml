@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.adobe.cairngorm</groupId>
 		<artifactId>lib-parent</artifactId>
-        <version>3.0.6-SNAPSHOT</version>
+        <version>3.0.6</version>
     </parent>
  
     <version>1.4</version>
