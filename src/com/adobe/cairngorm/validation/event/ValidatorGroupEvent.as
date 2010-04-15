@@ -22,33 +22,34 @@
  */
 package com.adobe.cairngorm.validation.event
 {
-    import flash.events.Event;
+	import flash.events.Event;
 
-    import mx.collections.IList;
+	import mx.collections.IList;
 
-    public class ValidatorGroupEvent extends Event
-    {
-        public static const VALIDITY_CHANGE:String = "validityChange";
+	public class ValidatorGroupEvent extends Event
+	{
+		public static const VALIDITY_CHANGE:String="validityChange";
 
-        public static const ENABLED_CHANGE:String = "enabledChange";
+		public static const ENABLED_CHANGE:String="enabledChange";
 
-        private var _invalidValidators:IList;
+		private var _invalidValidators:IList;
 
-        public function get invalidValidators():IList
-        {
-            return _invalidValidators;
-        }
+		public function get invalidValidators():IList
+		{
+			return _invalidValidators;
+		}
 
-        public function ValidatorGroupEvent(
-            type:String,
-            bubbles:Boolean = true,
-            cancelable:Boolean = false,
-            invalidValidators:IList = null)
-        {
-            super(type, bubbles, cancelable);
+		public function get isValid():Boolean
+		{
+			return !(_invalidValidators && _invalidValidators.length > 0);
+		}
 
-            _invalidValidators = invalidValidators;
-        }
+		public function ValidatorGroupEvent(type:String, bubbles:Boolean=true, cancelable:Boolean=false, invalidValidators:IList=null)
+		{
+			super(type, bubbles, cancelable);
 
-    }
+			_invalidValidators=invalidValidators;
+		}
+
+	}
 }
