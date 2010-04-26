@@ -45,7 +45,10 @@
 
                 <configuration>
 
-                    <targetPlayer>${player.version}.0.0</targetPlayer>
+                    <debug>${flex-debug}</debug>
+                    <optimize>${flex-optimize}</optimize>
+                    <verboseStacktraces>${flex-verbose-stacktraces}</verboseStacktraces>
+                    <targetPlayer>${player.version}</targetPlayer>
                     <compiledLocales>
                         <locale>en_US</locale>
                     </compiledLocales>
