@@ -46,14 +46,15 @@ package com.adobe.cairngorm.validation
 		 * @see #registerForValidationEvents()
 		 *
 		 * @example
-		 *   <br>
-		 *   &lt;validators:ValidatorGroupSubscriber &gt; <br>
-		 *   &nbsp;&nbsp;&lt;validators:subscribers&gt;<br>
-		 *   &nbsp;&nbsp;&nbsp;&nbsp;&lt;validators:ValidatorGroupSubscriber <br>
-		 *   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;validator="{ model.validatorGroup.firstnameValidator }" <br>
-		 *   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;control="{ firstnameInput } /&gt;<br>
-		 *   &nbsp;&nbsp;&lt;/validators:subscribers&gt; <br>
-		 *   &lt;/validators:ValidatorGroupSubscriber&gt;<br>
+		 * <listing>
+		 *   &lt;validators:ValidatorGroupSubscriber &gt;
+		 *   	&lt;validators:subscribers&gt;
+		 *   		&lt;validators:ValidatorGroupSubscriber
+		 *   			validator="{ model.validatorGroup.firstnameValidator }"
+		 *   			control="{ firstnameInput } /&gt;
+		 *   		&lt;/validators:subscribers&gt;
+		 *   &lt;/validators:ValidatorGroupSubscriber&gt;
+		 * </listing>
 		 *
 		 */
 		[ArrayElementType("com.adobe.cairngorm.validation.ValidatorSubscriber")]

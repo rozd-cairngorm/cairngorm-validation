@@ -73,11 +73,13 @@ package com.adobe.cairngorm.validation
 		 *   mainGroup.addValidatorGroup( nestedGroup );<br>
 		 *
 		 *   <br><b>// Using MXML</b><br>
-		 *   &lt;validators:ValidatorGroup id="mainGroup"&gt; <br>
-		 *   &nbsp;&nbsp;&lt;validators:groups&gt;<br>
-		 *   &nbsp;&nbsp;&nbsp;&nbsp;&lt;validators:ValidatorGroup id="nestedGroup" /&gt;<br>
-		 *   &nbsp;&nbsp;&lt;/validators:groups&gt; <br>
-		 *   &lt;/validators:ValidatorGroup&gt;<br>
+		 * 	 <listing>
+		 *   &lt;validators:ValidatorGroup id="mainGroup"&gt;
+		 *   		&lt;validators:groups&gt;
+		 *   				&lt;validators:ValidatorGroup id="nestedGroup" /&gt;
+		 *   		&lt;/validators:groups&gt;
+		 *   &lt;/validators:ValidatorGroup&gt;
+		 *   </listing>
 		 *
 		 */
 		[ArrayElementType("com.adobe.cairngorm.validation.ValidatorGroup")]
@@ -100,11 +102,13 @@ package com.adobe.cairngorm.validation
 		 *   group.addValidator( validator );<br>
 		 *
 		 *   <br><b>// Using MXML</b><br>
+		 *   <listing>
 		 *   &lt;validators:ValidatorGroup id="group"&gt; <br>
-		 *   &nbsp;&nbsp;&lt;validators:validator&gt;<br>
-		 *   &nbsp;&nbsp;&nbsp;&nbsp;&lt;mx:Validator id="validator" /&gt;<br>
-		 *   &nbsp;&nbsp;&lt;/validators:validator&gt; <br>
+		 *   	&lt;validators:validator&gt;<br>
+		 *   		&lt;mx:Validator id="validator" /&gt;<br>
+		 *   	&lt;/validators:validator&gt; <br>
 		 *   &lt;/validators:ValidatorGroup&gt;<br>
+		 *   </listing>
 		 *
 		 */
 		[ArrayElementType("mx.validators.Validator")]
