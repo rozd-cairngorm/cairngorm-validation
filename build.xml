@@ -5,9 +5,13 @@
 	
 	<target name="asdocs">
 	    <exec executable="${flex.dir}/bin/asdoc.exe" failonerror="true">
-            <arg line="-doc-sources ${basedir}/src" />	
+            <arg line="-doc-sources ${basedir}/src" />
+	    	
             <arg value="-window-title" />
 	    	<arg value="${ant.project.name} Docs" />
+            	
+	    	<arg line="-package-description-file asDocPackageFile.xml" />
+	    	
 	    	<arg line="-output ${basedir}/docs" />
 	    </exec>
 	</target>	
