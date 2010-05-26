@@ -42,14 +42,14 @@ package com.adobe.cairngorm.validation
 	 * this event will be dispatched after the creation of the document otherwise
 	 * it will wait until the <code>validate()</code> method is called.
 	 *
-	 * @eventType com.adobe.ac.validators.event.ValidatorGroupEvent.VALIDITY_CHANGE
+	 * @eventType com.adobe.cairngorm.validation.event.ValidatorGroupEvent.VALIDITY_CHANGE
 	 */
 	[Event(name="validityChange", type="com.adobe.cairngorm.validation.event.ValidatorGroupEvent")]
 
 	/**
 	 * Dispatched when the validator group enable flag change.
 	 *
-	 * @eventType com.adobe.ac.validators.event.ValidatorGroupEvent.ENABLED_CHANGE
+	 * @eventType com.adobe.cairngorm.validation.event.ValidatorGroupEvent.ENABLED_CHANGE
 	 */
 	[Event(name="enabledChange", type="com.adobe.cairngorm.validation.event.ValidatorGroupEvent")]
 
@@ -173,12 +173,13 @@ package com.adobe.cairngorm.validation
 		{
 			_enabled=value;
 
-			validate(true);
+            validate(true);
 
 			for each (var group:ValidatorGroup in groups)
 			{
 				group.enabled=value;
 			}
+            
 
 			dispatchEvent(new ValidatorGroupEvent(ValidatorGroupEvent.ENABLED_CHANGE));
 		}
@@ -227,8 +228,13 @@ package com.adobe.cairngorm.validation
 		 */
 		public function reset():void
 		{
+            //Reset all validators (and group)
 			resetAllValidators();
 			resetGroups();
+            
+            //force validating silently (without error feedback on controls) so the ValidatorGroup isValid flag 
+            //is in sync with the data it validates. 
+            validate(true);
 		}
 
 		/**

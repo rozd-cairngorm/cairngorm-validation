@@ -14,6 +14,7 @@
     <classEntry path="com.adobe.cairngorm.validation.AllTests"/>
     <classEntry path="com.adobe.cairngorm.validation.MockValidatorListener"/>
     <classEntry path="com.adobe.cairngorm.validation.TestValidatorGroup"/>
+    <classEntry path="com.adobe.cairngorm.validation.event.ValidationResultEvent"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

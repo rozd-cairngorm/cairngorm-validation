@@ -22,14 +22,15 @@
  */
 package com.adobe.cairngorm.validation
 {
+	import com.adobe.cairngorm.validation.event.ValidationResultEvent;
+	
 	import flash.events.EventDispatcher;
 	import flash.events.FocusEvent;
-
+	
 	import mx.binding.utils.BindingUtils;
 	import mx.core.IMXMLObject;
 	import mx.core.UIComponent;
 	import mx.events.FlexEvent;
-	import mx.events.ValidationResultEvent;
 	import mx.validators.IValidatorListener;
 	import mx.validators.Validator;
 
@@ -62,8 +63,8 @@ package com.adobe.cairngorm.validation
 
 		[Bindable]
 		public var enableControlTrigger:Boolean=false;
-
-		/**
+        
+        /**
 		 * By setting this property to true, the Validator Listener is going to be reset to VALID
 		 * on FOCUS_IN event.
 		 */
@@ -124,7 +125,35 @@ package com.adobe.cairngorm.validation
 
 		private function handleFocusIn(event:FocusEvent):void
 		{
+            var validator : Validator;
+
+            for each (var subscriber:ValidatorSubscriber in subscribers)
+            {
+                if (subscriber.listener == event.currentTarget)
+                {
+                    validator = subscriber.validator;
+                    break;
+                }
+                else if (subscriber.listener is Array)
+                {
+                    for each (var listener:IValidatorListener in subscriber.listener)
+                    {
+                        if (listener == event.currentTarget)
+                        {
+                            validator = subscriber.validator;
+                            break;
+                        }
+                    }
+                    
+                    if( validator ) 
+                    {
+                        break;
+                    }
+                }
+            }
+            
 			var validationResultEvent:ValidationResultEvent=new ValidationResultEvent(ValidationResultEvent.VALID);
+            validationResultEvent.target = validator;
 			IValidatorListener(event.currentTarget).validationResultHandler(validationResultEvent);
 		}
 
@@ -247,7 +276,17 @@ package com.adobe.cairngorm.validation
 
 			if (resetValidationFeedbackOnFocusIn)
 			{
-				UIComponent(subscriber.listener).addEventListener(FocusEvent.FOCUS_IN, handleFocusIn);
+                if( subscriber.listener is Array )
+                {
+                    for each( var listener : IValidatorListener in subscriber.listener )
+                    {
+                        UIComponent(listener).addEventListener(FocusEvent.FOCUS_IN, handleFocusIn);
+                    }
+                }
+                else
+                {
+    				UIComponent(subscriber.listener).addEventListener(FocusEvent.FOCUS_IN, handleFocusIn);
+                }
 			}
 		}
 
