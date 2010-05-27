@@ -73,7 +73,10 @@ package com.adobe.cairngorm.validation
 		{
 			for each( var listener : IValidatorListener in listeners )
 			{
-				listener.validationResultHandler( event );
+                if( listener )
+                {
+				    listener.validationResultHandler( event );
+                }
 			}
 		}
 	}
