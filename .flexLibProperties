@@ -16,6 +16,10 @@
     <classEntry path="com.adobe.cairngorm.validation.TestValidatorGroup"/>
     <classEntry path="com.adobe.cairngorm.validation.event.ValidationResultEvent"/>
   </includeClasses>
-  <includeResources/>
-  <namespaceManifests/>
+  <includeResources>
+    <resourceEntry destPath="design.xml" sourcePath="design.xml"/>
+  </includeResources>
+  <namespaceManifests>
+    <namespaceManifestEntry manifest="manifest.xml" namespace="http://ns.adobe.com/cairngorm"/>
+  </namespaceManifests>
 </flexLibProperties>

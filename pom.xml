@@ -58,11 +58,20 @@
                     </includeSources>
                     <allowSourcePathOverlap>true</allowSourcePathOverlap>
                     <showWarnings>true</showWarnings>
-                    <!--
-                        <namespaces> <namespace> <uri>http://www.adobe.com/cairngorm</uri>
-                        <manifest>${basedir}/manifest.xml</manifest> </namespace>
-                        </namespaces>
-                    -->
+					
+					<includeNamespaces>
+                        <namespace>http://ns.adobe.com/cairngorm</namespace>
+                    </includeNamespaces>
+                    <namespaces>
+                        <namespace>
+                            <uri>http://ns.adobe.com/cairngorm</uri>
+                            <manifest>${project.build.sourceDirectory}/manifest.xml</manifest>
+                        </namespace>
+                    </namespaces>
+                    <includeFiles>
+                        <file>${project.build.sourceDirectory}/design.xml</file>
+                    </includeFiles>	
+                    
                 </configuration>
 
             </plugin>
