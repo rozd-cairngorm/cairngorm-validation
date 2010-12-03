@@ -6,6 +6,7 @@
 		<groupId>com.adobe.cairngorm</groupId>
 		<artifactId>lib-parent</artifactId>
 		<version>3.0.18-SNAPSHOT</version>
+        <relativePath>../lib-parent/pom.xml</relativePath>
 	</parent>
 
 	<version>1.13-SNAPSHOT</version>
