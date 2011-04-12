@@ -122,6 +122,21 @@ package com.adobe.cairngorm.validation
 
 			validator.listener=listener;
 		}
+		
+		public static function unregisterForValidationEvents(validator:Validator):void
+		{
+			//If the listener is different from null mean the validator is already linked to a
+			//listener, therefore we first reset the listener before setting the new one. 
+			if (validator.listener != null)
+			{
+				var validationResultEvent:ValidationResultEvent=new ValidationResultEvent(ValidationResultEvent.VALID);
+				validationResultEvent.target = validator;
+				IValidatorListener(validator.listener).validationResultHandler(validationResultEvent);
+				
+				validator.listener=null;
+				validator.trigger=null;
+			}
+		}
 
 		private function handleFocusIn(event:FocusEvent):void
 		{
@@ -197,6 +212,24 @@ package com.adobe.cairngorm.validation
 				}
 			}
 		}
+		
+		public function reset():void
+		{
+			if (subscribers != null)
+			{
+				countValidators = 0;
+				count = 0;
+				for (var i:uint=0; i < subscribers.length; i++)
+				{
+					var subscriber:ValidatorSubscriber=subscribers[i];
+
+					if (subscriber.validator)
+					{
+						unregisterForValidationEvents(subscriber.validator);
+					}
+				}
+			}
+		}
 
 		private function registerSubscribers():void
 		{
@@ -230,6 +263,8 @@ package com.adobe.cairngorm.validation
 
 		private function subscribedInitialized(listener:Object):void
 		{
+			
+			
 			if (listener != null && listener is Array && containNullValues(listener as Array) == false)
 			{
 				count++;
@@ -248,6 +283,7 @@ package com.adobe.cairngorm.validation
 
 		private function subscribedValidatorsInitialized(validator:Validator):void
 		{
+
 			if (validator != null)
 			{
 				countValidators++;
