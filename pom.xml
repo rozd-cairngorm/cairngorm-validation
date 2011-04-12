@@ -51,10 +51,6 @@
 					<optimize>${flex-optimize}</optimize>
 					<verboseStacktraces>${flex-verbose-stacktraces}</verboseStacktraces>
 					<targetPlayer>${player.version}</targetPlayer>
-					<compiledLocales>
-						<locale>en_US</locale>
-					</compiledLocales>
-					<resourceBundlePath>${basedir}/locales/{locale}</resourceBundlePath>
 					<includeSources>
 						<param>${project.build.sourceDirectory}</param>
 					</includeSources>
