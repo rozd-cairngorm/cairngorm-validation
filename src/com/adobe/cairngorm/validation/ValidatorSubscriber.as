@@ -22,25 +22,13 @@
  */
 package com.adobe.cairngorm.validation
 {
-    import flash.events.EventDispatcher;
+import flash.events.Event;
+import flash.events.EventDispatcher;
     
     import mx.validators.Validator;
 
     public class ValidatorSubscriber extends EventDispatcher
     {
-
-        [Bindable]
-        public var validator:Validator;
-
-        
-		/**
-		 * the listener property should be a reference to an EventDispatcher or to an array of EventDispatcher
-		 * in the case where we want multiple controls to be highlighted when an validation error occurs.
-		 */
-		[Bindable]
-        public var listener:Object;
-		
-		
         /**
          * The ValidatorSubscriber constructor.
          */
@@ -49,5 +37,42 @@ package com.adobe.cairngorm.validation
             super();
         }
 
+        //
+
+        private var _listener:Object;
+
+        [Bindable(event="listenerChanged")]
+		/**
+		 * the listener property should be a reference to an EventDispatcher or to an array of EventDispatcher
+		 * in the case where we want multiple controls to be highlighted when an validation error occurs.
+		 */
+        public function get listener():Object
+        {
+            return _listener;
+        }
+
+        public function set listener(value:Object):void
+        {
+            if (_listener == value) return;
+            _listener = value;
+            dispatchEvent(new Event("listenerChanged"));
+        }
+
+        //
+
+        private var _validator:Validator;
+
+        [Bindable(event="validatorChanged")]
+        public function get validator():Validator
+        {
+            return _validator;
+        }
+
+        public function set validator(value:Validator):void
+        {
+            if (_validator == value) return;
+            _validator = value;
+            dispatchEvent(new Event("validatorChanged"));
+        }
     }
 }

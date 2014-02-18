@@ -29,8 +29,8 @@ package com.adobe.cairngorm.validation
 
 	import mx.collections.ArrayCollection;
 	import mx.core.IMXMLObject;
-	import mx.core.UIComponent;
-	import mx.events.CollectionEvent;
+    import mx.core.UIComponent;
+    import mx.events.CollectionEvent;
 	import mx.events.FlexEvent;
 	import mx.events.ValidationResultEvent;
 	import mx.validators.IValidatorListener;

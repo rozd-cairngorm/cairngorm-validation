@@ -29,8 +29,8 @@ package com.adobe.cairngorm.validation
 	
 	import mx.binding.utils.BindingUtils;
 	import mx.core.IMXMLObject;
-	import mx.core.UIComponent;
-	import mx.events.FlexEvent;
+import mx.core.UIComponent;
+import mx.events.FlexEvent;
 	import mx.validators.IValidatorListener;
 	import mx.validators.Validator;
 
@@ -231,7 +231,7 @@ package com.adobe.cairngorm.validation
 			}
 		}
 
-		private function registerSubscribers():void
+		public function registerSubscribers():void
 		{
 			if (subscribers != null)
 			{
